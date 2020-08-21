@@ -104,13 +104,14 @@ SELECT * FROM CURSOS;
 
 /* VAMOS CADASTRAR 2 PROCEDURES: 1-CADASTRAR - 2- LER DADOS */
 
-/* CADASTRAR */
+/* 1. CADASTRAR */
 DELIMITER $
 CREATE PROCEDURE CADASTRAR_CURSOS(P_NOME VARCHAR(30), 
 								  P_HORAS INT, 
 								  P_VALOR FLOAT(10,2))
 BEGIN
-	INSERT INTO CURSOS (NOME, HORAS, VALOR) VALUES ( P_NOME, P_HORAS, P_VALOR);
+	INSERT INTO CURSOS (NOME, HORAS, VALOR) 
+	VALUES ( P_NOME, P_HORAS, P_VALOR);
 END
 $
 DELIMITER ;
@@ -126,3 +127,27 @@ WHERE IDCURSO = 6;
 +---------+----------+-------+-------+
 |       6 | CURSO TI |   166 |  1.20 |
 +---------+----------+-------+-------+
+
+/* 2. LER CURSOS */
+DELIMITER $
+
+CREATE PROCEDURE LER_CURSOS()
+BEGIN
+	SELECT * FROM CURSOS;
+END
+$
+
+DELIMITER ;
+
+/* USAR PROCEDURE LER_CURSOS*/
+CALL LER_CURSOS();
++---------+---------------+-------+--------+
+| IDCURSO | NOME          | HORAS | VALOR  |
++---------+---------------+-------+--------+
+|       1 | CURSO DE POO  |    30 |  30.00 |
+|       2 | CURSO DE JAVA |    60 | 300.00 |
+|       3 | CURSO DE VBA  |    90 | 380.00 |
+|       4 | CURSO DE C++  |   120 | 100.00 |
+|       5 | CURSO DE PHP  |   150 | 500.00 |
+|       6 | CURSO TI      |   166 |   1.20 |
++---------+---------------+-------+--------+
