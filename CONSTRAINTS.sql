@@ -1,0 +1,57 @@
+/* ************** CONSTRAINTS **************  */
+
+/* BOAS PRÁTICAS: 1° CRIA-SE A TABELA 
+                  2° CRIA-SE AS CONSTRAINTS 
+*/
+
+/* CRIAÇÃO BANCO DE DADOS*/
+CREATE DATABASE CONSTRAINTS;
+
+/* INICIO CRIAÇÃO DE TABELAS */
+CREATE TABLE CLIENTE (
+	IDCLIENTE INT, 
+	NOME VARCHAR (50) NOT NULL
+);
+
+CREATE TABLE TELEFONE (
+	IDTELEFONE INT, 
+	TIPO ENUM ('RES', 'CEL', 'COM') NOT NULL,
+	NUMERO VARCHAR (10) NOT NULL,
+	ID_CLIENTE INT
+);
+/* FIM CRIAÇÃO DE TABELAS */
+
+/* INÍCIO DA CRIAÇÃO DAS CONSTRAINTS */
+ALTER TABLE CLIENTE ADD CONSTRAINT PK_CLIENTE
+PRIMARY KEY (IDCLIENTE);
+
+ALTER TABLE TELEFONE ADD CONSTRAINT FK_CLIENTE_TELEFONE
+FOREIGN KEY (ID_CLIENTE) REFERENCES CLIENTE (IDCLIENTE);
+
+
+
+
+
+
+
+
+
+
+/* INSERÇÃO DE DADOS*/
+INSERT INTO JOGADOR (NOME) 
+	   VALUES ('WESLLEY ROCHA');
++-----------+---------------+
+| IDJOGADOR | NOME          |
++-----------+---------------+
+|         1 | WESLLEY ROCHA |
++-----------+---------------+
+
+/* INSERÇÃO DE DADOS*/
+INSERT INTO TIMES (NOME_TIME, ID_JOGADOR) 
+	   VALUES ('FLAMENGO', 1);
++--------+-----------+------------+
+| IDTIME | NOME_TIME | ID_JOGADOR |
++--------+-----------+------------+
+|      1 | FLAMENGO  |          1 |
++--------+-----------+------------+
+
